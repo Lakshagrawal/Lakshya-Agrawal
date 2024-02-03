@@ -15,6 +15,7 @@ export default function Home() {
     const [sentence,setSentence] = useState('');
     const [loading, setLoading] = useState(false);
 
+    //collecting sentences from the api what to update the code and logic
     useEffect(() => {
         const fetchData = async () => {
             try {
