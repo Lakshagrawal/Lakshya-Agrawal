@@ -1,60 +1,84 @@
 import React, {   useEffect, useState } from 'react'
 import Congratulation from './Congratulation';
+import {easy_words,hard_words,medium_words} from "../Data"
 
-export default function Home() {
-    
-    const [speakText,setSpeakText] = useState("")
-    const [index,setIndex] = useState(0)
+export default function Home({level}) {
+    // console.log(medium_words)
+    const [speakText,setSpeakText] = useState("") // word which we have to write
+    const [index,setIndex] = useState(0) // at which index in the arrayWord which is speaking
     const [message,setMessage] = useState(""); //this is the text(message) which is the textbox message
     const [voices,setVoices] = useState(null);
     const [currentVoice,setCurrentVoice] = useState(0);
-    const [arrayWord,setArrayWord] = useState([]);
+    const [mistakeSay,setMistakeSay] = useState(false);
     const [done,setDone] = useState(false);
+    const [arrayWord,setArrayWord] = useState([]);
     const [sizeArray,setSizeArray] = useState(1e9);
-    const [sentenceArray,setSentenceArray] = useState([]);
-    const [sentence,setSentence] = useState('');
     const [loading, setLoading] = useState(false);
+    
+    const makingArray = async(level)=>{
+        let i = 0;
+        let array = [];
+        let n = 0;
+        let quotes = [];
+        
+        if(level === 1){
+            console.log(easy_words)
+            array = easy_words;
+            n = easy_words.length; // Change easy_words.length() to easy_words.length
+            i = Math.floor(Math.random() * (n - 10)); // Use Math.floor to get an integer value
+            for(let j = i; j < Math.min(i + 10, easy_words.length); j++){
+                quotes.push(array[j]);
+                console.log("object "+quotes)
+            }
+            console.log(quotes);
+            setLoading(true);
+        }
+        else if(level === 2){
+            array = medium_words;
+            n = array.length;
+            i = Math.floor(Math.random() * (n - 10));
+
+            for(let j=i;j<Math.min(i+10,n);j++){
+                quotes.push(array[j]);
+            }
+            console.log(quotes);
+            setLoading(true)
+        }
+        else if(level === 3){
+            array = hard_words;
+            n = array.length;
+            i = (Math.random()*(n-10));
+            
+            for(let j=i;j<Math.min(i+10,n);j++){
+                quotes.push(array[j]);
+            }
+            console.log(quotes);
+            setLoading(true)
+        }
+
+        if(quotes !== undefined || quotes != null || quotes.length === 0){
+            console.log('object:', quotes)
+            setArrayWord(quotes);
+            setLoading(false)
+        }
+    }
 
     //collecting sentences from the api what to update the code and logic
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("https://type.fit/api/quotes");
-                const data = await response.json(); 
-                const quotes = data.map(item => item.text);
-                console.log(quotes);
-                setSentenceArray(quotes)
-                setLoading(true)
-                
+                makingArray(level)
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
         };
     
         fetchData();
+        // eslint-disable-next-line
     }, []);
 
-    useEffect(()=>{
-        let i = Math.floor(Math.random() * sentenceArray.length)
-        let temp = sentenceArray[i];
-        
-        if(temp !== undefined || temp != null){
-            console.log('object:', temp)
-            setSentence(temp.toLowerCase());
-            setLoading(false)
-        }
-    },[sentenceArray])
 
-    const msg = new SpeechSynthesisUtterance();
 
-    //intial text in the speaking button    
-    useEffect(() => {
-        console.log("hello lakshya: ",sentence)
-        const tempArray = sentence.split(' ').filter(word => word.trim() !== "");
-        setArrayWord(tempArray);
-        console.log(tempArray);
-        console.log('this is the speak array: ',arrayWord)
-      }, [sentence]);
 
 
     useEffect(()=>{
@@ -70,8 +94,10 @@ export default function Home() {
     },[index,arrayWord,sizeArray])
     
 
+    // if you update speakText then it is going to
     useEffect(()=>{
-        speakFunction(msg)
+        speakFunction()
+        // eslint-disable-next-line
       },[speakText])
 
     
@@ -79,6 +105,7 @@ export default function Home() {
     const currentCharcter = ()=>{
         console.log('this is the current charcter index:',index)
         setIndex(index+1);
+        setMistakeSay(true)
         //Updating the index value if speakText === message you have write
         console.log("this is the index hello guys, ",index)
     }
@@ -103,8 +130,10 @@ export default function Home() {
         let speakSize = speakText.length;
 
         if(flag === 1){
-            speakFunction(msg);
-            // setMessage(""); // It will clear all the text if there is any error
+            if(mistakeSay){
+                setMistakeSay(false)
+                speakFunction();
+            }
         }
         else if((sz === speakSize) && (messageText === speakText) ){
             console.log("have find equal")
@@ -146,18 +175,18 @@ export default function Home() {
       }, [voices,currentVoice,index,speakText]);
     
 
-    const speakFunction = (msg)=>{
+    const speakFunction = ()=>{
+        const msg = new SpeechSynthesisUtterance();
         console.log(index)
         // let text = speakText !== null ? speakText : "";
         let text = "";
 
         if(speakText !== null && speakText !== ''){
             text= speakText;     
-        }
-        else{
+        }else{
             text= "Text empty";    
         }
-        
+
         try {
             msg.text = text;
             msg.voice = voices[currentVoice];
@@ -174,7 +203,7 @@ export default function Home() {
     {
         return !loading?(
             <div>
-                <div className="mb-3">
+                <div className="mb-3 container">
                     <label htmlFor="exampleFormControlTextarea1" className="form-label m-3"><h1>Write your text</h1></label>
                     <textarea className="form-control" id="exampleFormControlTextarea1" value={message || ''} onChange={updateText} rows="10"></textarea>
                     {/* <!-- Example single danger button --> */}
@@ -191,7 +220,7 @@ export default function Home() {
                         {/* <li><a className="dropdown-item" href="/">{}</a></li> */}
                     </ul>
                     </div>
-                    <button type="button" className="btn btn-primary m-3" onClick={()=>{ speakFunction(msg)}}>Replay</button>
+                    <button type="button" className="btn btn-primary m-3" onClick={()=>{ speakFunction()}}>Replay</button>
                 </div>
             </div>
         )

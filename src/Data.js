@@ -1,4 +1,4 @@
-easy_words = [
+const easy_words = [
     "happy", "sunny", "candy", "puppy", "kitten", "cookie", "apple", "banana", "orange", "lemon",
     "lime", "grape", "peach", "cherry", "berry", "water", "milk", "juice", "bread", "butter",
     "cheese", "yogurt", "cereal", "pasta", "rice", "pizza", "burger", "fries", "salad", "tomato",
@@ -12,7 +12,7 @@ easy_words = [
     "carrot", "broccoli", "cauliflower"
 ]
 
-difficult_words = [ 
+const medium_words = [ 
     "onomatopoeia", "hippopotamus", "sesquipedalian", "syzygy", "schadenfreude", "phenomenon",
     "antidisestablishmentarianism", "supercalifragilisticexpialidocious", "gobbledygook", "catastrophe",
     "bourgeoisie", "anemone", "mnemonic", "chiaroscurist", "exacerbate", "phenolphthalein", "feuilleton",
@@ -30,7 +30,7 @@ difficult_words = [
     "panache", "ennui", "bourgeoisie", "soliloquy", "segue"
 ]
 
-more_difficult_words = [
+const hard_words = [
     "anemone", "bourgeoisie", "czarist", "daiquiri", "entrepreneur", 
     "floccinaucinihilipilification", "gnocchi", "haphazard", "inchoate", 
     "juxtaposition", "kleptocracy", "labyrinthine", "mnemonic", 
@@ -59,3 +59,4 @@ more_difficult_words = [
 ]
 
 
+module.exports =  {easy_words,hard_words,medium_words}
