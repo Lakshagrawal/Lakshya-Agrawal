@@ -177,8 +177,10 @@ export default function Home({level}) {
       }, [voices,currentVoice,index,speakText]);
     
     const revealWord = ()=>{
-        setnegetiveMistake(negetiveMistake+1);
-        setnegetiveIndex(index);
+        if(negetiveMistake<= index){
+            setnegetiveMistake(negetiveMistake+1);
+            setnegetiveIndex(index);
+        }
 
     };
 
@@ -192,7 +194,7 @@ export default function Home({level}) {
             if(speakText !== null && speakText !== '' && speakText !== undefined){
                 text= speakText;     
             }else{
-                text= "Select Language Your First Word Is";    
+                text= "Select Language, Your First Word Is: ";    
             }
 
             try {
