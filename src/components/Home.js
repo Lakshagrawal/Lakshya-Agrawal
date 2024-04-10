@@ -222,6 +222,7 @@ export default function Home({level}) {
 
                    
                     <textarea className="form-control" id="exampleFormControlTextarea1" value={message || ''} onChange={updateText} rows="10"></textarea>
+                    <label htmlFor="exampleFormControlTextarea1" className="form-label m-3"><h4>Select a Language you are confortable in grasping:   </h4></label>
                     {/* <!-- Example single danger button --> */}
                     <div className="btn-group">
                     <button type="button" className="btn btn-info dropdown-toggle" data-bs-toggle="dropdown"  aria-expanded="false">
@@ -236,12 +237,14 @@ export default function Home({level}) {
                         {/* <li><a className="dropdown-item" href="/">{}</a></li> */}
                     </ul>
                     </div>
+                </div>
+                <div className="container">
                     <button type="button" className="btn btn-primary m-3" onClick={()=>{ speakFunction()}}>Replay</button>
-                    <button type="button" className="btn btn-primary m-3" onClick={()=>{ revealWord()}}>Reveal Word</button>
+                    <button type="button" className="btn btn-primary m-3" onClick={()=>{ revealWord()}}>Use Hint </button>
                     {index === negetiveIndex?speakText:""} 
                 </div>
                 <div className="container">
-                    <label htmlFor="exampleFormControlTextarea1" className="form-label m-3"><h1>Mistake</h1></label>
+                    <label htmlFor="exampleFormControlTextarea1" className="form-label m-3"><h4>No. of hints used: </h4></label>
                     {negetiveMistake}/10
                 </div>
             </div>
