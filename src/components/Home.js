@@ -205,6 +205,7 @@ export default function Home({level}) {
             <div>
                 <div className="mb-3 container">
                     <label htmlFor="exampleFormControlTextarea1" className="form-label m-3"><h1>Write your text</h1></label>
+                    {index}/10
                     <textarea className="form-control" id="exampleFormControlTextarea1" value={message || ''} onChange={updateText} rows="10"></textarea>
                     {/* <!-- Example single danger button --> */}
                     <div className="btn-group">
