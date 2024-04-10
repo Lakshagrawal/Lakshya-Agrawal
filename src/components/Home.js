@@ -14,7 +14,9 @@ export default function Home({level}) {
     const [arrayWord,setArrayWord] = useState([]);
     const [sizeArray,setSizeArray] = useState(1e9);
     const [loading, setLoading] = useState(false);
-    
+    const [negetiveMistake, setnegetiveMistake] = useState(0);
+    const [negetiveIndex,setnegetiveIndex] = useState(-1);
+
     const makingArray = async(level)=>{
         let i = 0;
         let array = [];
@@ -174,6 +176,11 @@ export default function Home({level}) {
        console.log("this is the speakText: ",speakText)
       }, [voices,currentVoice,index,speakText]);
     
+    const revealWord = ()=>{
+        setnegetiveMistake(negetiveMistake+1);
+        setnegetiveIndex(index);
+
+    };
 
     const speakFunction = ()=>{
         if (voices && voices.length > 0) {
@@ -209,8 +216,11 @@ export default function Home({level}) {
         return !loading?(
             <div>
                 <div className="mb-3 container">
-                    <label htmlFor="exampleFormControlTextarea1" className="form-label m-3"><h1>Write your text</h1></label>
+                    <label htmlFor="exampleFormControlTextarea1" className="form-label m-3"><h1>Write your text   </h1></label>
+                    {/* <label htmlFor="exampleFormControlTextarea1" className="form-label m-3"><h1>  Complete</h1></label> */}
                     {index}/10
+
+                   
                     <textarea className="form-control" id="exampleFormControlTextarea1" value={message || ''} onChange={updateText} rows="10"></textarea>
                     {/* <!-- Example single danger button --> */}
                     <div className="btn-group">
@@ -220,13 +230,19 @@ export default function Home({level}) {
                     <ul className="dropdown-menu">
                         {voices==null?"this is not ":
                             voices.map((e,i)=>
-                                <li key={i} className="dropdown-item" onClick={()=>setCurrentVoice(i)} >{e.voiceURI}</li>
-                            )
-                        }
+                            <li key={i} className="dropdown-item" onClick={()=>setCurrentVoice(i)} >{e.voiceURI}</li>
+                        )
+                    }
                         {/* <li><a className="dropdown-item" href="/">{}</a></li> */}
                     </ul>
                     </div>
                     <button type="button" className="btn btn-primary m-3" onClick={()=>{ speakFunction()}}>Replay</button>
+                    <button type="button" className="btn btn-primary m-3" onClick={()=>{ revealWord()}}>Reveal Word</button>
+                    {index === negetiveIndex?speakText:""} 
+                </div>
+                <div className="container">
+                    <label htmlFor="exampleFormControlTextarea1" className="form-label m-3"><h1>Mistake</h1></label>
+                    {negetiveMistake}/10
                 </div>
             </div>
         )
