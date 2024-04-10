@@ -12,51 +12,32 @@ const easy_words = [
     "carrot", "broccoli", "cauliflower"
 ]
 
-const medium_words = [ 
-    "onomatopoeia", "hippopotamus", "sesquipedalian", "syzygy", "schadenfreude", "phenomenon",
-    "antidisestablishmentarianism", "supercalifragilisticexpialidocious", "gobbledygook", "catastrophe",
-    "bourgeoisie", "anemone", "mnemonic", "chiaroscurist", "exacerbate", "phenolphthalein", "feuilleton",
-    "sphygmomanometer", "quixotic", "plutocracy", "valetudinarian", "iridocyclitis", "zygote",
-    "eleemosynary", "gallimaufry", "obstreperous", "rhabdomyolysis", "hieroglyphics", "palimpsest",
-    "verisimilitude", "xanthosis", "xylophone", "zeugma", "vichyssoise", "gastronome", "xerophthalmia",
-    "quasimodo", "vignette", "guillotine", "vivisection", "schizophrenia", "archipelago", "worcestershire",
-    "mnemonics", "obfuscate", "sibilant", "idiosyncrasy", "acquiesce", "pseudoephedrine", "tintinnabulation",
-    "lepidopterist", "pseudonym", "gubernatorial", "phthalocyanine", "philippic", "pusillanimous",
-    "pharmacopoeia", "xerography", "serendipity", "ptarmigan", "fahrenheit", "hierarchically", "juxtaposition",
-    "beleaguer", "defenestration", "numismatist", "ruminant", "sphygmomanometer", "synecdoche", "tchotchke",
-    "weltschmerz", "schadenfreude", "syzygy", "xenophobic", "ophthalmologist", "quasimodo", "heterogeneous",
-    "xenogenesis", "unctuous", "onomatopoeia", "mischievous", "karaoke", "mnemonic", "hors d'oeuvre",
-    "saccharin", "sesquicentennial", "phosphorescent", "eclectic", "loquacious", "clandestine", "entrepreneur",
-    "panache", "ennui", "bourgeoisie", "soliloquy", "segue"
-]
-
 const hard_words = [
-    "anemone", "bourgeoisie", "czarist", "daiquiri", "entrepreneur", 
-    "floccinaucinihilipilification", "gnocchi", "haphazard", "inchoate", 
-    "juxtaposition", "kleptocracy", "labyrinthine", "mnemonic", 
-    "onomatopoeia", "paradigm", "quixotic", "recalcitrant", "schadenfreude", 
-    "tsunami", "ubiquitous", "verisimilitude", "worcestershire", 
-    "xenophobia", "yacht", "zeitgeist", "zymurgy", 
-    "antidisestablishmentarianism", "supercalifragilisticexpialidocious", 
-    "pneumonoultramicroscopicsilicovolcanoconiosis", 
-    "hippopotomonstrosesquippedaliophobia", "sesquipedalian", "cynosure", 
-    "oenophile", "phytoplankton", "rhapsodize", "vainglorious", 
-    "xerophthalmia", "zymurgy", "circumlocution", "sesquipedalian", 
-    "paraphernalia", "lackadaisical", "onomatopoeia", "epistemology", 
-    "eschatology", "onomatopoeia", "plutocracy", "flibbertigibbet", 
-    "heuristic", "incunabula", "jurisprudence", "kaleidoscope", 
-    "lugubrious", "malapropism", "nihilism", "obfuscate", 
-    "palimpsest", "quiddity", "recidivism", "sycophant", 
-    "threnody", "unctuous", "vainglorious", "weltschmerz", 
-    "xenoglossia", "yammer", "zymurgy", "anachronistic", 
-    "bromidrosis", "cacophony", "dystopia", "ebullient", 
-    "farrago", "garrulous", "heterogeneous", "ignominious", 
-    "juxtapose", "kakistocracy", "legerdemain", "mellifluous", 
-    "nomenclature", "obstreperous", "pulchritudinous", "quixotic", 
-    "recalcitrant", "sycophant", "triskaidekaphobia", "ubiquitous", 
-    "vestigial", "whippersnapper", "xenophobia", "ylem", 
-    "zygote"
-]
+    "challenge", "difficult", "puzzle", "courage", "adventure",
+    "bravery", "mystery", "legend", "riddle", "victory",
+    "quest", "enigma", "journey", "triumph", "quest",
+    "pioneer", "legendary", "conquest", "treasure", "courageous",
+    "innovation", "thriller", "exploration", "perseverance", "inspiration",
+    "persistence", "success", "excitement", "courageous", "achievement",
+    "challenge", "discovery", "victory", "achievement", "excitement",
+    "inspiration", "perseverance", "quest", "mystery", "legendary",
+    "innovation", "thriller", "exploration", "perseverance", "success",
+    "adventure", "challenge", "excitement", "discovery", "achievement"
+];
+
+const medium_words = [
+    "discovery", "explore", "mystery", "curious", "wonder",
+    "innovate", "pioneer", "treasure", "journey", "courage",
+    "thriller", "legend", "heroic", "adventure", "puzzle",
+    "challenge", "bravery", "victory", "enigma", "triumph",
+    "inspiration", "perseverance", "achievement", "excitement", "quest",
+    "mystery", "legendary", "innovation", "exploration", "success",
+    "adventure", "challenge", "discovery", "victory", "achievement",
+    "excitement", "inspiration", "perseverance", "quest", "curiosity",
+    "wonder", "mystery", "legendary", "innovation", "thriller",
+    "exploration", "perseverance", "success", "adventure", "challenge"
+];
+
 
 
 module.exports =  {easy_words,hard_words,medium_words}

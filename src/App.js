@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <Navbar></Navbar>
       <Routes>
-      <Route exact path='/' element={<First/>} /> 
+        <Route exact path='/' element={<First/>} /> 
         <Route exact path='/word/easy' element={<Home level={1}/>} /> 
         <Route exact path='/word/medium' element={<Home level={2}/>} /> 
         <Route exact path='/word/hard' element={<Home level={3}/>} /> 

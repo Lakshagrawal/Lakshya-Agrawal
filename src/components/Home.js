@@ -47,7 +47,7 @@ export default function Home({level}) {
         else if(level === 3){
             array = hard_words;
             n = array.length;
-            i = (Math.random()*(n-10));
+            i = Math.floor(Math.random() * (n - 10));
             
             for(let j=i;j<Math.min(i+10,n);j++){
                 quotes.push(array[j]);
@@ -114,7 +114,7 @@ export default function Home({level}) {
     const updateText = (event)=>{
         let messageText = event.target.value;
 
-        console.log('You have type: ',messageText)
+        // console.log('You have type: ',messageText)
 
         let flag = 0;
         let sz = messageText.length;
@@ -125,7 +125,7 @@ export default function Home({level}) {
                 break;
             }
         }
-        console.log('flag value: ',flag);
+        // console.log('flag value: ',flag);
 
         let speakSize = speakText.length;
 
@@ -144,18 +144,18 @@ export default function Home({level}) {
         }
     }
     
-    
+    const handleVoicesChange = () => {
+        // When voices change, get the updated list of voices
+        const allVoices = window.speechSynthesis.getVoices();
+        // console.log('All Voices:', allVoices);
+  
+        // You may want to update the state with the new voices list
+        setVoices(allVoices);
+      };
 
     useEffect(() => {
-        const handleVoicesChange = () => {
-            // When voices change, get the updated list of voices
-            const allVoices = window.speechSynthesis.getVoices();
-            // console.log('All Voices:', allVoices);
-      
-            // You may want to update the state with the new voices list
-            setVoices(allVoices);
-          };
-      
+        
+            handleVoicesChange();
           // Attach the event listener
           window.speechSynthesis.onvoiceschanged = handleVoicesChange;
       
@@ -176,25 +176,30 @@ export default function Home({level}) {
     
 
     const speakFunction = ()=>{
-        const msg = new SpeechSynthesisUtterance();
-        console.log(index)
-        // let text = speakText !== null ? speakText : "";
-        let text = "";
+        if (voices && voices.length > 0) {
+            const msg = new SpeechSynthesisUtterance();
+            console.log(index)
+            // let text = speakText !== null ? speakText : "";
+            let text = "";
 
-        if(speakText !== null && speakText !== ''){
-            text= speakText;     
-        }else{
-            text= "Text empty";    
+            if(speakText !== null && speakText !== '' && speakText !== undefined){
+                text= speakText;     
+            }else{
+                text= "Select Language Your First Word Is";    
+            }
+
+            try {
+                msg.text = text;
+                msg.voice = voices[currentVoice];
+                window.speechSynthesis.speak(msg)    
+                
+            } catch (error) {
+                console.log("this is the error in speaking text")
+                console.log(error)
+            }
         }
-
-        try {
-            msg.text = text;
-            msg.voice = voices[currentVoice];
-            window.speechSynthesis.speak(msg)    
+        else{
             
-        } catch (error) {
-            console.log("this is the error in speaking text")
-            console.log(error)
         }
         
     }
