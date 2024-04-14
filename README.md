@@ -63,7 +63,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/a
 
 ### Deployment
 
-This section has moved here: [https://word-speller.netlify.app/]()
+This section has moved here: [https://word-speller.netlify.app/](https://word-speller.netlify.app/)
 
 ### `npm run build` fails to minify
 
