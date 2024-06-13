@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 
-This project use Api of  [Words Api](https://random-word-api.herokuapp.com/word?number=10)
+This project use Api of  [10 Random Words ](https://random-word-api.herokuapp.com/word?number=10)
 
 You can vist there website on [WordsApi](https://random-word-api.herokuapp.com/home)
 
